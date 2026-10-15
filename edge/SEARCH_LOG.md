@@ -258,3 +258,12 @@ Costs: $3 per round trip per MGC (base), $6 (stress).
 Payout terms, pessimistic: 50% withdrawable (confirmed), cap $2,500, 5 qualifying days at >= $200, 90% split.
 k in {1,2,3,4}. Seeds 1 and 2. N = 50,000.
 PASS: EV per attempt > 0 at $6 cost on both seeds for the chosen k AND for its neighbours (k±1, roughly the ±30% sd band) AND SE < 25% of EV. Otherwise the FTMO option is DEAD.
+RESULT (ftmo_stress.py, 782 real days, sd $131 per MGC 09-16):
+| k | sd/day | EV @$3 (s1/s2) | EV @$6 (s1/s2) | p_pass @$6 |
+| 1 | 131 | -1004/-1004 | -928/-926 | 0.047 |
+| 2 | 262 | -247/-245 | -291/-289 | 0.145 |
+| 3 | 380 | -61/-60 | -123/-120 | 0.176 |
+| 4 | 495 | -11/-12 | -61/-61 | 0.174 |
+SE 2-3. VERDICT: FAIL; every cell is negative, at both seeds and both costs. The FTMO option is DEAD under the prereg.
+The normal model's +$98 at sd 500 did not survive real gold paths, k-scaled costs ($12-24 per day vs $3.75 modelled), and stop slippage at the bar close.
+k >= 5 (sd 600+) was not pre-registered and is NOT run: that would be fishing.

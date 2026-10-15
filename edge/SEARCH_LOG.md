@@ -211,3 +211,9 @@ but that is pre-publication data and the rule has decayed on ES.
 Rebuilt XAUUSD 2011-16 bars from FX-Data (2011 partial: 3848 hourly files vs ~5800/yr). Ran G-NA dev with the code unchanged except paths.
 Result is identical to the log: 1406 days, 3.87 trades/wk, gross 3.34, cost 2.74, net 0.60 bp/trade, t 0.45, Sharpe 0.19, maxDD -7.3%, 4/6 years positive.
 Payoff shape (new, descriptive, net per traded day, CFD cost): 756 days traded, hit 38.2%, avg win +46.0 bp, avg loss -27.1 bp (realised ratio 1.70), worst day -224 bp.
+
+## 2026-10-15 MGC / FTMO Futures cost check (Sonnet; CME pages returned 503)
+- Confirmed (ftmo.com): $0.20/side commission on micros; MGC allowed; force-flat 16:10 ET; NinjaTrader/Tradovate/TradingView; monthly $119-269; end-of-day trailing max loss.
+- MGC = 10 oz, $1/tick (CME search snippet). CME exchange/clearing/NFA fees: UNCONFIRMED.
+- All-in round trip = $1.40 + X (exchange+NFA round trip). At $4,000 gold: 0.35 bp + 0.25 bp per $1 of X. At $2,600: 0.54 bp + 0.38 bp per $1 of X.
+- Implication, logged before results: the pre-set 0.65 bp holds at today's gold price only if X is about $1.20 or less. The 2x leg (1.30 bp) covers X of up to about $3.80 at $4,000. Pass bar unchanged. If MGC passes at 1x but fails at 2x, the X figure decides it.

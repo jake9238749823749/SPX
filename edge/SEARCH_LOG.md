@@ -267,3 +267,14 @@ RESULT (ftmo_stress.py, 782 real days, sd $131 per MGC 09-16):
 SE 2-3. VERDICT: FAIL; every cell is negative, at both seeds and both costs. The FTMO option is DEAD under the prereg.
 The normal model's +$98 at sd 500 did not survive real gold paths, k-scaled costs ($12-24 per day vs $3.75 modelled), and stop slippage at the bar close.
 k >= 5 (sd 600+) was not pre-registered and is NOT run: that would be fishing.
+
+## 2026-10-15 CORRECTION (formal)
+I claimed futures escape swap on multi-week holds. That is wrong in substance. A futures price embeds financing (F ≈ S·(1 + r − lease)), and the basis converges, so a long future pays about r per year exactly like a swap. Futures remove only the broker's swap MARKUP: OANDA's −5.45% long / +1.85% short implies about ±1.8% around r. They also remove the spread, and the 16:10 flat-out rule is FTMO-only. Multi-week tests must use excess returns (spot − r), not spot returns.
+
+## PREREG: last lever, multi-week time-series momentum on gold (logged before the run)
+Rule (Moskowitz-Ooi-Pedersen 2012, published, untuned): at each month-end, position = sign(12-month excess return), hold one month, 1x. Secondary rules, reported but not decision-grade: 1-month and 3-month lookbacks.
+Data: XAUUSD daily 16:00 NY mid. FX-Data 2011-06..2016-12 (first 12 months are warm-up) and HistData 2021-10..2024-12 (first 12 months are warm-up). No 2025-26 data is used.
+Returns: spot minus r. r = 3m T-bill annual average, hard-coded: 2011-15 0.05%, 2016 0.3%, 2021 0.05%, 2022 2.0%, 2023 5.1%, 2024 5.0%.
+Costs: MGC 0.65 bp per position change, plus a 2 bp roll every 2 months while in a position. Stress 2x.
+Months: about 54 + 27 = 81. MDE Sharpe ≈ 2/sqrt(6.75) ≈ 0.77.
+PASS: annualized net Sharpe ≥ 0.77, net > 0 at 2x cost, and positive in both eras. FAIL closes the last lever.

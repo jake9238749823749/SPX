@@ -206,3 +206,8 @@ Cost lever found (Sonnet agent; firm page + estimates, verify): FTMO Futures (Au
 Estimated round trip MES about 0.7 bp, MGC about 0.6-0.7 bp (vs gold CFD 2.8 bp), 6B about 1.2 bp. No swap.
 Only gold gets materially cheaper. Gold noise-area gross was +3.34 bp/trade in 2011-16, which would clear MGC cost,
 but that is pre-publication data and the rule has decayed on ES.
+
+## 2026-10-15 New session: pipeline reproduction (no new test)
+Rebuilt XAUUSD 2011-16 bars from FX-Data (2011 partial: 3848 hourly files vs ~5800/yr). Ran G-NA dev with the code unchanged except paths.
+Result is identical to the log: 1406 days, 3.87 trades/wk, gross 3.34, cost 2.74, net 0.60 bp/trade, t 0.45, Sharpe 0.19, maxDD -7.3%, 4/6 years positive.
+Payoff shape (new, descriptive, net per traded day, CFD cost): 756 days traded, hit 38.2%, avg win +46.0 bp, avg loss -27.1 bp (realised ratio 1.70), worst day -224 bp.

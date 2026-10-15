@@ -10,6 +10,8 @@
 
 ## Thresholds (from correct.py)
 | N | Bonferroni z | Expected max Sharpe by chance (annualised) |
+
+Minimum detectable annualised Sharpe ≈ z(1−0.05/N)/√years. N=1,000 on 8 years ≈ 1.4; N=50 on 8 years ≈ 1.1.
 |---|---|---|
 | 7 | 2.69 | 0.98 |
 | 41 | 3.11 | ~1.5 (approx) |
@@ -19,7 +21,7 @@
 Read: at N = 1,000, a Sharpe of 2 is what pure chance produces. Any "Sharpe 2" result from a large search is noise unless it clears the forward threshold.
 
 ## Honest limits (the goal as stated cannot be fully met yet)
-- **Data is spent.** Every window we have has been used. Any new hypothesis is only testable forward, which takes months. A family of thousands cannot be scored in one session.
+- **Data is partly unspent (corrected 2026-10-15).** Several windows were never used; see DATA_LEDGER.md. GBPUSD 2018-07 to 2026-09 is a valid one-shot window today. Forward testing is still needed for anything after 2026-09.
 - **The data feed lags.** HistData publishes monthly. Forward scoring is one to two months behind the market.
 - **Search rate limits.** During the sprawl, WebSearch hit too_many_requests repeatedly. Generating thousands of candidates needs a different source or a slower schedule.
 - **Current family:** 7 locked specs, 3 spent. Four open for forward scoring. The first verdict is months away.

@@ -16,3 +16,8 @@
 - Locked 7 specs. 3 are spent on known data and cannot pass. 4 are open for forward scoring.
 - Learned: "thousands of candidates, each scored once" is not possible on data already seen. Every verdict needs forward data, which lags by months.
 - Next question: a source for new hypotheses that doesn't hit search rate limits.
+
+## 2026-10-15 (family goal, advisor-reviewed)
+- Advisor flagged that "data is spent" may be false. Verified: HistData serves 2019 and 2020 windows. The GBPUSD 2018-07+ window is unspent and is the best one-shot window (DATA_LEDGER.md).
+- Power table added to FAMILY.md. N=1,000 on 8 years gives minimum detectable Sharpe ≈ 1.4.
+- Next: a paper gate (instrument, frequency, FTMO legality, exact parameters, 2x cost) and a harvest batch of ≤20 agents, then lock code hashes, then open GBPUSD 2018-07+ once.

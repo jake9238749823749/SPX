@@ -278,3 +278,6 @@ Returns: spot minus r. r = 3m T-bill annual average, hard-coded: 2011-15 0.05%, 
 Costs: MGC 0.65 bp per position change, plus a 2 bp roll every 2 months while in a position. Stress 2x.
 Months: about 54 + 27 = 81. MDE Sharpe ≈ 2/sqrt(6.75) ≈ 0.77.
 PASS: annualized net Sharpe ≥ 0.77, net > 0 at 2x cost, and positive in both eras. FAIL closes the last lever.
+RESULT (tsmom.py): 12m lookback, 81 months: gross Sharpe −0.17, net −0.18, t −0.47. Era A −16 bp/mo, era B −41 bp/mo. 3m: net Sharpe −0.55. 1m: −0.18.
+VERDICT: FAIL. Gross is negative before any cost. The last lever is closed.
+PROGRAM CLOSED: 32 tests (intraday, daily, multi-week, account-structure). 0 survivors. No further tests on US500/XAUUSD/GBPUSD without a new information source.

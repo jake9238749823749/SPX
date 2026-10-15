@@ -37,8 +37,8 @@ _cache = {}
 
 def load(sym):
     if sym not in _cache:
-        if sym == 'XAUUSD_HD':
-            fs = sorted(glob.glob(f'{DATA}/XAUUSD_HD_*.pkl'))
+        if sym.endswith('_HD'):
+            fs = sorted(glob.glob(f'{DATA}/{sym}_*.pkl'))
         else:
             fs = sorted(f for f in glob.glob(f'{DATA}/{sym}_*.pkl') if '_HD_' not in f)
         b = pd.concat([pd.read_pickle(f) for f in fs]).sort_index()

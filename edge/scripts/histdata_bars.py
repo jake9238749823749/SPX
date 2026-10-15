@@ -9,15 +9,16 @@ import pandas as pd
 sys.path.insert(0, '/tmp/fx1m')
 from histdata.api import download_hist_data, TimeFrame, Platform
 
+PAIR = os.environ.get('PAIR', 'XAUUSD')
 OUT = '/home/user/SPX/edge/data'
 ZDIR = f'{OUT}/histdata/' + str(os.getpid())  # per-process dir: no zip collisions
 os.makedirs(ZDIR, exist_ok=True)
 
 
 def month(ym):
-    dst = f'{OUT}/XAUUSD_HD_{ym}.pkl'
+    dst = f'{OUT}/{PAIR}_HD_{ym}.pkl'
     if os.path.exists(dst): return
-    z = download_hist_data(year=ym[:4], month=int(ym[4:]), pair='xauusd', time_frame=TimeFrame.TICK_DATA,
+    z = download_hist_data(year=ym[:4], month=int(ym[4:]), pair=PAIR.lower(), time_frame=TimeFrame.TICK_DATA,
                            platform=Platform.GENERIC_ASCII, output_directory=ZDIR, verbose=False)
     with zipfile.ZipFile(z) as zf:
         name = [n for n in zf.namelist() if n.endswith('.csv')][0]

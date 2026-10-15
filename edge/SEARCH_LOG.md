@@ -281,3 +281,14 @@ PASS: annualized net Sharpe ≥ 0.77, net > 0 at 2x cost, and positive in both e
 RESULT (tsmom.py): 12m lookback, 81 months: gross Sharpe −0.17, net −0.18, t −0.47. Era A −16 bp/mo, era B −41 bp/mo. 3m: net Sharpe −0.55. 1m: −0.18.
 VERDICT: FAIL. Gross is negative before any cost. The last lever is closed.
 PROGRAM CLOSED: 32 tests (intraday, daily, multi-week, account-structure). 0 survivors. No further tests on US500/XAUUSD/GBPUSD without a new information source.
+
+## PREREG (2026-10-15, before data): Opening-Range Breakout, fabledforman TradingView open-source (top-liked ORB). Author defaults, untuned.
+Instrument: US500 via HistData SPXUSD tick bid/ask (spread median 0.63 pt in 2022-03, ~1.4 bp).
+Rules: OR = 09:30-10:15 ET mid high/low. Trade only if OR width >= 0.35% of the 10:15 price. After 10:15: stop-buy at OR high, stop-sell at OR low, first touch wins.
+Fill at max(level, bar open) + half spread (long; mirrored for short). Stop = 0.5 × OR width from entry. Target = 1.1 × stop distance.
+On a stop-out, reverse once (same stop and target rules from the new entry), so at most 2 trades a day. Flat at 15:45 at bid/ask.
+If a bar touches both stop and target, assume the STOP (conservative). 1-min bars, America/New_York.
+Costs: CFD leg = actual bar spreads plus 0 commission. MES leg = flat 0.7 bp round trip. Both legs at 1x and 2x.
+DEV 2021-10..2024-12. HOLDOUT 2025-01..2026-09, run once and only if DEV passes.
+PASS (DEV): gross >= 2 × round-trip cost per trade; net t >= 2 (MDE Sharpe ≈ 1.12); net > 0 at 2x cost; >= 60% of years positive. Trades/week reported against the 4/week floor.
+Unknowns resolved by assumption, since the Pine source was not visible: one reversal per day; the OR filter uses the 10:15 mid.

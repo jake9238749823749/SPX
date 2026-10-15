@@ -231,3 +231,14 @@ Per trade, bp. CFD = feed bid/ask + 0.002%/side commission. MGC = flat 0.65 RT.
 | X4b | 4.30 | -0.60 | -2.74 | -1.25 | -1.98 | 2/4 | -1.90 | 1.00 |
 VERDICT: no rule passes DEV. G-NA, the lead candidate, has negative gross (it was +3.34 in 2011-16). Only X1b clears the 1.4 bp gross bar, but it fails on t (1.03 vs 2.0) and p_adj (0.12). It is also inconsistent with 2011-16 (gross 1.16, 1/6 years positive). Holdout NOT run: it is pre-set to require a DEV pass, and no post-hoc exception is granted.
 PROGRAM DECISION: the intraday program on US500/XAUUSD/GBPUSD is closed. 30 strategy-period tests, 0 survivors.
+
+## 2026-10-15 Structural test: FTMO Futures 50K Growth as an option (zero-edge trader)
+Script: edge/scripts/ftmo_option.py. Monte Carlo, 20k attempts per cell, seed 1. Zero drift, MGC cost $3 per round trip, 250 funded days.
+Rules are from the FTMO page. The Growth mapping, the 40% consistency rule and the 50K payout terms are inferred, so the run brackets two payout sets (pessimistic and optimistic).
+Results (EV per attempt = payouts - fees):
+- Daily sd $150: -$700 to -$770. Fee bleed, since the target takes too long to reach.
+- Daily sd $300: -$40 to -$190.
+- Daily sd $500-800: +$7 to +$145, with p_pass 0.25-0.27 and fees $134-174. Positive under both payout sets.
+- Daily sd $1,200: -$5 to +$115.
+Interpretation: the edge is the account's convexity (loss capped at the fee, upside in funded payouts), not the market. About 73% of attempts lose the fee.
+Unverified, and each could flip the sign: a funded-stage fee; minimum trading days; payout terms for 50K Growth; FTMO discretionary rules on "gambling" or "inconsistent" trading; payout denial risk.

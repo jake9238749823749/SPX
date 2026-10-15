@@ -296,3 +296,17 @@ RESULT ORB DEV 2021-10..2024-12 (335 trade days):
 - CFD: trades/wk 2.93, gross 3.11, cost 1.12, net +1.99 bp/trade, t 1.32, Sharpe 0.72, maxDD -6.2%, 3/4 years positive. At 2x cost: net +0.87.
 - MES: net +2.41, t 1.60, Sharpe 0.87, maxDD -4.9%. At 2x cost: net +1.71.
 VERDICT: FAIL. It clears the gross ≥ 2× cost bar, net > 0 at 2x and the years-positive bar, but FAILS on t (1.60 vs 2.0, MDE 1.12) and on frequency (2.93 vs 4 trades/week). Holdout NOT opened. This is the strongest near-miss in the program and is flagged for blind replication only.
+
+## 2026-10-15 ORB blind replication (Haiku, spec only, no access to the code)
+Days 335, 497 trades. Gross 3.107, cost 1.120, net 1.987, t 1.316. MES flat cost: net 2.407, t 1.600. Matches the original to 3 decimals.
+Net per trade by year: 2021 +4.52, 2022 +2.51, 2023 -1.07, 2024 +2.18.
+External disconfirmer (sprawl lane 17): Krueger's MQL5 replication of the Zarattini ORB on SPX CFD, 2015-2026: gross +0.119R (t 2.4), net -0.081R (t -1.6).
+STATUS: confirmed DEV near-miss. It still FAILS the prereg (t, frequency). Holdout stays sealed.
+
+## 2026-10-15 Research sprawl (20 Haiku lanes, RESEARCH_SPRAWL.md): 19 of 20 returned, all NOTHING
+Rate limits thinned lanes 8 and 10. Useful facts:
+- Topstep micro fees $1.22 (MES) / $1.92 (MGC) round trip. MGC all-in ≈ 0.73 bp at $4,000 gold, ≈ 1.5 bp at $1,900; MES ≈ 0.83 bp at 6,000.
+- Slippage vendor claim: ~1 tick per trade (unverified).
+- 43-gold-EA backtest: 19% blow-ups.
+- Pre-FOMC drift, turn-of-month and VWAP reversion: no 2023+ support.
+- 2025-26 papers find no intraday predictability on MNQ/SPY after costs.

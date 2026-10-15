@@ -310,3 +310,7 @@ Rate limits thinned lanes 8 and 10. Useful facts:
 - 43-gold-EA backtest: 19% blow-ups.
 - Pre-FOMC drift, turn-of-month and VWAP reversion: no 2023+ support.
 - 2025-26 papers find no intraday predictability on MNQ/SPY after costs.
+
+## PREREG 2026-10-15: ORB forward paper test on MES (orb_paper/README.md holds the binding rules)
+Window 2026-10-19..2027-01-15, 1 MES, rules unchanged. KILL: slippage > 1 tick per side, or any rule break. PASS: net > 0, all-in cost <= 1.2 bp, 100% rule adherence.
+On PASS: 6 more months of paper, plus a one-shot opening of the sealed 2025-26 holdout (this is the pre-logged exception). On FAIL: ORB is dead.

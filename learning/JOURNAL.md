@@ -29,3 +29,10 @@
 - Next question: none from this paper until its parameters are published; no pre-registration justified.
 - 2026-10-15: Audit 002 final: 4 lenses FATAL (arith, leak, cost, replic), 2 CONCERN (freq, data). 9/11 findings survived refutation. Verdict UNAUDITABLE, fails as written.
 - 2026-10-15: Audit 002 workflow stopped at user request; synthesis and two refuters not completed. Verdict stands on completed results.
+
+## 2026-10-15 (off-repo request: Porsche picture, eight-agent blitz)
+- Result: the car released today is the Porsche Mission S (vision model), world premiere 15 Oct 2026 in New York. Three independent sources agree: Porsche newsroom page, CNBC, The Drive. Image downloaded and verified as a 1920x1080 JPEG (The Drive hero shot).
+- Learned: image URLs from a summarizing fetch are unverified until downloaded. Porsche's own press-photo links are thumbnail.cgi endpoints, not files, and were not checked.
+- Learned: CNBC, Autoblog, Car and Driver, MotorTrend and Road & Track blocked or returned 403 to the agents. Three outlets converged anyway.
+- Got wrong: I passed run_in_background false on all eight agents, but five ran async, so the blitz was not as synchronous as the call implied.
+- Next question: does a Porsche newsroom image download directly (porschepictures.flowcenter.de), or do press shots need a login?

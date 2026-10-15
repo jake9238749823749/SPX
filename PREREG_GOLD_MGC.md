@@ -8,3 +8,9 @@ Nulls: sign-flip on gross (gross edge exists); recentered block bootstrap (net e
 Kill: all three gross < 1.4 bp in DEV -> close intraday program; no 24th rule.
 
 Amendment 2026-10-15 (before data): adopt HANDOFF.md section 4 bar exactly. DEV also needs >= 60% of years positive. HOLDOUT pass = net > 0 with one-sided p < 0.10. Where the two documents differ, HANDOFF.md governs; it was logged first.
+
+Amendment 2 (2026-10-15, before any 2021+ result): DATA SOURCE CHANGE. Using HistData.com XAUUSD tick bid/ask (fetched via philipperemy/FX-1-Minute-Data), not a Dukascopy export.
+Timestamps are fixed EST (UTC-5); converted to UTC. Bars: edge/data/XAUUSD_HD_YYYYMM.pkl, same columns as build_bars.py.
+The CFD cost leg now measures HistData's feed spread (median 0.396 $ in 2022-03, about 2 bp), not Dukascopy's or TradeLocker's. Treat the CFD column as indicative only. The decision uses the MGC flat 0.65 bp leg plus 2x stress, as pre-set.
+MGC cost leg: flat 0.65 bp round trip per trade, charged at mid fills (half per side); 2x = 1.30 bp.
+Coverage check before results: count valid session days per month and log it.

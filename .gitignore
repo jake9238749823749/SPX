@@ -1,3 +1,4 @@
 edge/data/
 __pycache__/
 edge/*_*/
+*.zip

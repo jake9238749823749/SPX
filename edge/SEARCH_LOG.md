@@ -250,3 +250,11 @@ Unverified, and each could flip the sign: a funded-stage fee; minimum trading da
 - Forbidden: exploiting the "spirit" of the service; relying on drawdown protection as the sole exit; cross-account hedging; overleveraging, "one-sided bets", "account rolling"; inconsistent sizing; Eval/funded behaviour mismatch; news concentration; 30 days inactive closes the account. Penalties include "forfeiture of rewards". FTMO may review any account.
 - STILL UNCONFIRMED: 50K Growth payout cap and qualifying days ($2,500 / 5 days at $200 assumed pessimistic).
 - Model implications: the pessimistic payout set's 50% matches the confirmed rule, and the funded-fee kill risk is removed. The rule-compliant cell is the one with the same sd in Eval and funded (no mismatch). S=Sf=500 gives EV +$98 per attempt (pessimistic) to +$134 (optimistic). Main residual risk: "one-sided bets / spirit" discretion. The strategy must have its own stop (not the DD) and consistent size.
+
+## 2026-10-15 PREREG: FTMO option stress test (logged before the run)
+Strategy, signal-free and rule-consistent: each weekday, a random direction at 09:00 ET with k MGC. Exit at 16:00 ET or at our own stop of -$800 (k*10*move), filled at the first 1-min close beyond it, so the bar gap counts as slippage. In funded, the stop is min($800, $1,000 soft DLL). Same k in Eval and funded.
+Days: bootstrapped from REAL 2021-10..2024-12 HistData bars, 09:00-16:00 ET paths. The 2025-26 data stays sealed.
+Costs: $3 per round trip per MGC (base), $6 (stress).
+Payout terms, pessimistic: 50% withdrawable (confirmed), cap $2,500, 5 qualifying days at >= $200, 90% split.
+k in {1,2,3,4}. Seeds 1 and 2. N = 50,000.
+PASS: EV per attempt > 0 at $6 cost on both seeds for the chosen k AND for its neighbours (k±1, roughly the ±30% sd band) AND SE < 25% of EV. Otherwise the FTMO option is DEAD.

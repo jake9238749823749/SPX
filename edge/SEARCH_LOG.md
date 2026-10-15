@@ -242,3 +242,11 @@ Results (EV per attempt = payouts - fees):
 - Daily sd $1,200: -$5 to +$115.
 Interpretation: the edge is the account's convexity (loss capped at the fee, upside in funded payouts), not the market. About 73% of attempts lose the fee.
 Unverified, and each could flip the sign: a funded-stage fee; minimum trading days; payout terms for 50K Growth; FTMO discretionary rules on "gambling" or "inconsistent" trading; payout denial risk.
+
+## 2026-10-15 FTMO Futures rules confirmed (FAQ + Forbidden Trading Practices pages)
+- CONFIRMED: no fee after passing. "The subscription is cancelled, and no additional payments are charged"; "you won't be charged for the Sim-Funded Account or Live Funded Account."
+- CONFIRMED: Growth payout = up to 50% of available profit per cycle. Pro = 100% with higher caps, a hard DLL, and a better target:DD ratio. 90/10 split.
+- CONFIRMED: no minimum trading days beyond consistency (3 days minimum for Growth, 2 for Pro). No time limit. Consistency rule applies in the Evaluation only.
+- Forbidden: exploiting the "spirit" of the service; relying on drawdown protection as the sole exit; cross-account hedging; overleveraging, "one-sided bets", "account rolling"; inconsistent sizing; Eval/funded behaviour mismatch; news concentration; 30 days inactive closes the account. Penalties include "forfeiture of rewards". FTMO may review any account.
+- STILL UNCONFIRMED: 50K Growth payout cap and qualifying days ($2,500 / 5 days at $200 assumed pessimistic).
+- Model implications: the pessimistic payout set's 50% matches the confirmed rule, and the funded-fee kill risk is removed. The rule-compliant cell is the one with the same sd in Eval and funded (no mismatch). S=Sf=500 gives EV +$98 per attempt (pessimistic) to +$134 (optimistic). Main residual risk: "one-sided bets / spirit" discretion. The strategy must have its own stop (not the DD) and consistent size.

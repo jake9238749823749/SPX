@@ -43,7 +43,7 @@ FACTS (ftmo.com/en/futures, read 2026-10-15)
   - Converter: edge/scripts/histdata_bars.py. Download about 8 months in parallel, with per-process zip directories.
 
 UNKNOWNS THAT DECIDE THE SIGN (each one can kill it)
-1. Is there any fee on funded or sim-funded accounts, or a monthly subscription that keeps running after the pass?
+1. RESOLVED 2026-10-15: no fee after passing; subscription cancelled. Growth payout 50% per cycle; Pro 100%. Consistency rule is Evaluation-only. No minimum days (3 for Growth via consistency). See SEARCH_LOG.
 2. The exact 50K Growth payout terms: cap, withdrawable %, qualifying days and threshold, frequency.
 3. Minimum trading days in the evaluation.
 4. Prohibited-practice clauses: gambling, inconsistent sizing, all-in or martingale, coordinated or hedged accounts, news trading. Also whether FTMO can deny or claw back payouts at its discretion.

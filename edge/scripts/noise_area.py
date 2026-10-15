@@ -4,16 +4,19 @@ Usage: python3 noise_area.py dev|holdout [G-NA|C-NA]
 import sys
 import numpy as np, pandas as pd
 sys.path.insert(0, '/home/user/SPX/edge/scripts')
-from battery import load, COMM
+from battery import load, COMM, COST_MODE, MGC_RT_BP
 
 COMM['US500'] = ('abs', 0.0)
 CFG = {'G-NA': ('XAUUSD', 'America/New_York', '08:20', 310),
        'C-NA': ('GBPUSD', 'Europe/London', '08:00', 480),
-       'U-NA': ('US500', 'America/New_York', '09:30', 390)}
+       'U-NA': ('US500', 'America/New_York', '09:30', 390),
+       'G-NA21': ('XAUUSD_HD', 'America/New_York', '08:20', 310)}
 PER = {'dev': {'XAUUSD': ('2011-01-01', '2016-12-31'), 'GBPUSD': ('2007-01-01', '2016-12-31'),
                'US500': ('2021-10-14', '2024-12-31')},
        'holdout': {'XAUUSD': ('2017-01-01', '2018-06-19'), 'GBPUSD': ('2017-01-01', '2018-06-19'),
-                   'US500': ('2025-01-01', '2026-10-14')}}
+                   'US500': ('2025-01-01', '2026-10-14')},
+       'dev21': {'XAUUSD_HD': ('2021-10-01', '2024-12-31')},
+       'hold25': {'XAUUSD_HD': ('2025-01-01', '2026-09-30')}}
 
 
 def grids(name):
@@ -65,6 +68,10 @@ def run(name, period, cost_mult=1.0):
             return ASK.loc[d, T] if side > 0 else BID.loc[d, T]
         ref = opn.loc[d]
         comm = (c if k == 'abs' else c * ref) * cost_mult
+        mgc = COST_MODE['mode'] == 'mgc'
+        def side_cost(px, mid):  # bp, one side
+            if mgc: return MGC_RT_BP / 2 * cost_mult
+            return (abs(px - mid) * cost_mult + comm) / ref * 1e4
         for T in checks:
             p, u, l, v = P.loc[d, T], U.loc[d, T], L.loc[d, T], VW.loc[d, T]
             want = pos
@@ -80,15 +87,15 @@ def run(name, period, cost_mult=1.0):
                 if pos != 0:  # close
                     px = fill(-pos, T); mid = P.loc[d, T]
                     pnl += pos * (mid - entry[1]) / ref * 1e4
-                    cost += (abs(px - mid) * cost_mult + comm) / ref * 1e4 + entry[2]
+                    cost += side_cost(px, mid) + entry[2]
                 if want != 0:
                     px = fill(want, T); mid = P.loc[d, T]
-                    entry = (T, mid, (abs(px - mid) * cost_mult + comm) / ref * 1e4); ntr += 1
+                    entry = (T, mid, side_cost(px, mid)); ntr += 1
                 pos = want
         if pos != 0:
             T = end; px = fill(-pos, T); mid = P.loc[d, T]
             pnl += pos * (mid - entry[1]) / ref * 1e4
-            cost += (abs(px - mid) * cost_mult + comm) / ref * 1e4 + entry[2]
+            cost += side_cost(px, mid) + entry[2]
         rows.append((pd.Timestamp(d), ntr, pnl, cost))
     df = pd.DataFrame(rows, columns=['d', 'trades', 'gross', 'cost']).set_index('d')
     df['net'] = df.gross - df.cost
@@ -108,6 +115,8 @@ def stats(df):
 
 if __name__ == '__main__':
     period = sys.argv[1]
+    if len(sys.argv) > 2 and sys.argv[2] in ('cfd', 'mgc'):
+        COST_MODE['mode'] = sys.argv.pop(2)
     for name in sys.argv[2:] or list(CFG):
         df = run(name, period)
         r = stats(df); r['net_day_2x'] = round(run(name, period, 2.0).net.mean(), 2)

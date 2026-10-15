@@ -7,8 +7,11 @@ import numpy as np, pandas as pd
 
 DATA = '/home/user/SPX/edge/data'
 LON, NY = 'Europe/London', 'America/New_York'
-COMM = {'GBPUSD': ('abs', 0.000025), 'XAUUSD': ('pct', 0.00002)}
-PERIOD = {'dev': ('2011-01-01', '2016-12-31'), 'sealed': ('2017-01-01', '2018-06-19')}
+COMM = {'GBPUSD': ('abs', 0.000025), 'XAUUSD': ('pct', 0.00002), 'XAUUSD_HD': ('pct', 0.00002)}
+MGC_RT_BP = 0.65  # flat round trip for the MGC cost leg (prereg amendment 2)
+COST_MODE = {'mode': 'cfd'}  # 'cfd' = bid/ask + commission; 'mgc' = flat MGC_RT_BP per trade
+PERIOD = {'dev': ('2011-01-01', '2016-12-31'), 'sealed': ('2017-01-01', '2018-06-19'),
+          'dev21': ('2021-10-01', '2024-12-31'), 'hold25': ('2025-01-01', '2026-09-30')}
 
 # name: (sym, tz, signal window or None, mode, trade window)
 # mode: 'fade' / 'follow' use signal sign; 'long' / 'short' fixed.
@@ -34,7 +37,10 @@ _cache = {}
 
 def load(sym):
     if sym not in _cache:
-        fs = sorted(glob.glob(f'{DATA}/{sym}_*.pkl'))
+        if sym == 'XAUUSD_HD':
+            fs = sorted(glob.glob(f'{DATA}/XAUUSD_HD_*.pkl'))
+        else:
+            fs = sorted(f for f in glob.glob(f'{DATA}/{sym}_*.pkl') if '_HD_' not in f)
         b = pd.concat([pd.read_pickle(f) for f in fs]).sort_index()
         b = b[~b.index.duplicated()]
         _cache[sym] = b
@@ -61,6 +67,7 @@ def at(b, tz, hhmm, days):
 
 def trades(name, period, cost_mult=1.0):
     sym, tz, sw, mode, tw = S[name]
+    if period in ('dev21', 'hold25') and sym == 'XAUUSD': sym = 'XAUUSD_HD'
     b = load(sym)
     lo, hi = PERIOD[period]
     loc = b.index.tz_convert(tz)
@@ -78,6 +85,8 @@ def trades(name, period, cost_mult=1.0):
     kind, c = COMM[sym]
     comm = 2 * (c / e.mid * 1e4 if kind == 'abs' else c * 1e4)
     cost = (half_spr + comm) * cost_mult
+    if COST_MODE['mode'] == 'mgc':
+        cost = pd.Series(MGC_RT_BP * cost_mult, index=days)
     df = pd.DataFrame({'dir': d, 'gross': gross, 'cost': cost})
     df = df[(df.dir != 0) & df.gross.notna() & df.cost.notna()]
     df['net'] = df.gross - df.cost
@@ -114,6 +123,8 @@ def flip_test(tr, n_iter=2000, seed=7):
 
 if __name__ == '__main__':
     period = sys.argv[1]
+    if len(sys.argv) > 2 and sys.argv[2] in ('cfd', 'mgc'):
+        COST_MODE['mode'] = sys.argv.pop(2)
     names = sys.argv[2:] or list(S)
     tr = {k: trades(k, period) for k in names}
     rows = []

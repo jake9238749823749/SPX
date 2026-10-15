@@ -10,7 +10,8 @@ sys.path.insert(0, '/tmp/fx1m')
 from histdata.api import download_hist_data, TimeFrame, Platform
 
 OUT = '/home/user/SPX/edge/data'
-ZDIR = f'{OUT}/histdata'
+ZDIR = f'{OUT}/histdata/' + str(os.getpid())  # per-process dir: no zip collisions
+os.makedirs(ZDIR, exist_ok=True)
 
 
 def month(ym):
@@ -41,6 +42,8 @@ def month(ym):
 
 if __name__ == '__main__':
     a, z = pd.Period(sys.argv[1][:4] + '-' + sys.argv[1][4:], 'M'), pd.Period(sys.argv[2][:4] + '-' + sys.argv[2][4:], 'M')
-    for p in pd.period_range(a, z, freq='M'):
+    ps = list(pd.period_range(a, z, freq='M'))
+    if sys.argv[3:] == ['rev']: ps = ps[::-1]  # second worker walks backward to avoid collisions
+    for p in ps:
         try: month(p.strftime('%Y%m'))
         except Exception as e: print(p, 'FAIL', repr(e)[:200], flush=True)

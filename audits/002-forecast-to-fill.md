@@ -37,6 +37,15 @@ The paper's 2015-2025 window overlaps gold data we've already spent (2011-18 and
 ## 7. Verdict
 UNAUDITABLE. Even if reproduced, it fails our gate on frequency (2.3/wk), on the paper's own 2x-cost row, and on the unresolved net-vs-gross question. No pre-registration is justified from this paper.
 
-## 8. Disconfirming evidence and limits
-- Three independent extractions agree on the formulas; the failures are in the parameters and the reconciliation, not the core idea.
-- The audit lenses (arithmetic, leakage, cost, frequency, replicability, data) and their refutation pass were still running when this was written. Any change from them will be added here.
+## 8. Full audit results (workflow wf_9f3d8fe3, 6 lenses, 3 refuters per serious finding)
+- **Arithmetic: FATAL.** Net status not established; the 1.0x Sharpe is 0.94 in Table 3 but "well above 2.5" in the text; T+0 vs T+1 shifts 31% of the return; the 15% sleeve is 16.5x leverage on the same series; IR inconsistent with its own definition.
+- **Leakage: FATAL.** The 2.88 headline is the T+0 row (same-bar close fill); the paper's own baseline is T+1 (Sharpe 2.28). The P&L equation is never written. The only falsification test flips the sign, which validates nothing. The 43% CAGR is a hindsight rescaling by full-period volatility.
+- **Cost: FATAL.** Table 3's zero-cost intercept times vol equals the headline return, so the headline reads as cost-free. Stated turnover implies costs about 15x smaller than the table. Capacity arithmetic gives about $2.2M, not $760M.
+- **Replicability: FATAL.** λ and θ are never given values; sizing does not reproduce from printed inputs (f* = 1e-6 vs a reported mean of 0.0029); the data series is undetermined; the code and data are not released.
+- **Frequency: CONCERN.** FTMO Futures forbids positions held past 16:10 ET, which the paper's P&L appears to violate. Holding period is not reported; the 1,282 "entries" are undefined, and turnover sits at the long-only ceiling.
+- **Data: CONCERN.** Two incompatible series (LBMA/COMEX settlement vs CME front-month); no roll method; ATR exits need highs and lows the stated data don't contain; the sources are struck about 3.5 hours apart.
+- **Refutation pass:** 9 of 11 findings survived 2 of 3 refuters, including the arithmetic contradictions, the T+0 vs T+1 timing, and the cost-basis conflict. The sizing-mismatch finding was refuted (the 25% baseline explains part of the gap) and is dropped.
+- Two refuter agents were still running at write-up; none of the outstanding results is expected to reverse a FATAL verdict.
+
+## 9. Final verdict
+UNAUDITABLE, and FAILS as written. Its headline 2.88 can't be attributed to a costed, executable, out-of-sample strategy. No pre-registration from this paper.

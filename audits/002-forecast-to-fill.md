@@ -45,7 +45,7 @@ UNAUDITABLE. Even if reproduced, it fails our gate on frequency (2.3/wk), on the
 - **Frequency: CONCERN.** FTMO Futures forbids positions held past 16:10 ET, which the paper's P&L appears to violate. Holding period is not reported; the 1,282 "entries" are undefined, and turnover sits at the long-only ceiling.
 - **Data: CONCERN.** Two incompatible series (LBMA/COMEX settlement vs CME front-month); no roll method; ATR exits need highs and lows the stated data don't contain; the sources are struck about 3.5 hours apart.
 - **Refutation pass:** 9 of 11 findings survived 2 of 3 refuters, including the arithmetic contradictions, the T+0 vs T+1 timing, and the cost-basis conflict. The sizing-mismatch finding was refuted (the 25% baseline explains part of the gap) and is dropped.
-- Two refuter agents were still running at write-up; none of the outstanding results is expected to reverse a FATAL verdict.
+- The workflow was stopped by the user before its synthesis step and last two refuter agents finished. The audit above rests on the 18 completed results; the stopped agents' outputs are not used.
 
 ## 9. Final verdict
 UNAUDITABLE, and FAILS as written. Its headline 2.88 can't be attributed to a costed, executable, out-of-sample strategy. No pre-registration from this paper.

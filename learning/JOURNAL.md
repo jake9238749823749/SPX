@@ -28,3 +28,4 @@
 - Learned: a headline Sharpe can be a cost-free or T+0 figure. Read the cost table, not the abstract.
 - Next question: none from this paper until its parameters are published; no pre-registration justified.
 - 2026-10-15: Audit 002 final: 4 lenses FATAL (arith, leak, cost, replic), 2 CONCERN (freq, data). 9/11 findings survived refutation. Verdict UNAUDITABLE, fails as written.
+- 2026-10-15: Audit 002 workflow stopped at user request; synthesis and two refuters not completed. Verdict stands on completed results.

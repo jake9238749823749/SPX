@@ -314,3 +314,11 @@ Rate limits thinned lanes 8 and 10. Useful facts:
 ## PREREG 2026-10-15: ORB forward paper test on MES (orb_paper/README.md holds the binding rules)
 Window 2026-10-19..2027-01-15, 1 MES, rules unchanged. KILL: slippage > 1 tick per side, or any rule break. PASS: net > 0, all-in cost <= 1.2 bp, 100% rule adherence.
 On PASS: 6 more months of paper, plus a one-shot opening of the sealed 2025-26 holdout (this is the pre-logged exception). On FAIL: ORB is dead.
+
+## 2026-10-15 Forward paper test CANCELLED at Jake's request (orb_paper/ deleted, never started)
+## POST-HOC EXCEPTION (logged before the run, at Jake's request): ORB HOLDOUT 2025-01..2026-09, run ONCE
+ORB failed DEV on t and frequency. Opening the holdout anyway is a post-hoc exception, same precedent as U-NA. Rules unchanged.
+Criteria fixed now:
+- Holdout pass: net > 0 at MES cost with one-sided p < 0.10 (t > 1.29), AND net > 0 at CFD cost.
+- Even on a pass, ORB stays below the program's bar, because it failed DEV. A pass makes it a live-forward candidate only; it is not a validated edge.
+- Holdout fail: ORB is dead.

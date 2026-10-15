@@ -217,3 +217,17 @@ Payoff shape (new, descriptive, net per traded day, CFD cost): 756 days traded, 
 - MGC = 10 oz, $1/tick (CME search snippet). CME exchange/clearing/NFA fees: UNCONFIRMED.
 - All-in round trip = $1.40 + X (exchange+NFA round trip). At $4,000 gold: 0.35 bp + 0.25 bp per $1 of X. At $2,600: 0.54 bp + 0.38 bp per $1 of X.
 - Implication, logged before results: the pre-set 0.65 bp holds at today's gold price only if X is about $1.20 or less. The 2x leg (1.30 bp) covers X of up to about $3.80 at $4,000. Pass bar unchanged. If MGC passes at 1x but fails at 2x, the X figure decides it.
+
+## 2026-10-15 GOLD DEV 2021-10..2024-12, HistData bid/ask, run once (prereg + amendments 1-2)
+Coverage: 60/60 months, 19-23 session days per month. 2022-11 had a download collision; its rebuilt file is complete (22 days).
+Per trade, bp. CFD = feed bid/ask + 0.002%/side commission. MGC = flat 0.65 RT.
+| Rule | /wk | Gross | Net CFD | Net MGC | t MGC | yrs+ MGC | MGC 2x | p_adj |
+| G-NA | 4.44 | -0.81 | -2.94 | -1.46 | -1.07 | 1/4 | neg | - |
+| X1a | 4.30 | 0.29 | -1.87 | -0.36 | -0.46 | 2/4 | -1.01 | 0.79 |
+| X1b | 4.29 | 1.98 | -0.17 | +1.33 | 1.03 | 3/4 | +0.68 | 0.12 |
+| X2a | 4.76 | 0.12 | -2.01 | -0.53 | -1.53 | 0/4 | -1.18 | 0.99 |
+| X2b | 4.76 | 0.90 | -1.23 | +0.25 | 0.43 | 3/4 | -0.40 | 0.34 |
+| X4a | 4.30 | -0.64 | -2.77 | -1.29 | -2.93 | 0/4 | -1.94 | 1.00 |
+| X4b | 4.30 | -0.60 | -2.74 | -1.25 | -1.98 | 2/4 | -1.90 | 1.00 |
+VERDICT: no rule passes DEV. G-NA, the lead candidate, has negative gross (it was +3.34 in 2011-16). Only X1b clears the 1.4 bp gross bar, but it fails on t (1.03 vs 2.0) and p_adj (0.12). It is also inconsistent with 2011-16 (gross 1.16, 1/6 years positive). Holdout NOT run: it is pre-set to require a DEV pass, and no post-hoc exception is granted.
+PROGRAM DECISION: the intraday program on US500/XAUUSD/GBPUSD is closed. 30 strategy-period tests, 0 survivors.

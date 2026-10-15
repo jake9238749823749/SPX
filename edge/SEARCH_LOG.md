@@ -292,3 +292,7 @@ Costs: CFD leg = actual bar spreads plus 0 commission. MES leg = flat 0.7 bp rou
 DEV 2021-10..2024-12. HOLDOUT 2025-01..2026-09, run once and only if DEV passes.
 PASS (DEV): gross >= 2 × round-trip cost per trade; net t >= 2 (MDE Sharpe ≈ 1.12); net > 0 at 2x cost; >= 60% of years positive. Trades/week reported against the 4/week floor.
 Unknowns resolved by assumption, since the Pine source was not visible: one reversal per day; the OR filter uses the 10:15 mid.
+RESULT ORB DEV 2021-10..2024-12 (335 trade days):
+- CFD: trades/wk 2.93, gross 3.11, cost 1.12, net +1.99 bp/trade, t 1.32, Sharpe 0.72, maxDD -6.2%, 3/4 years positive. At 2x cost: net +0.87.
+- MES: net +2.41, t 1.60, Sharpe 0.87, maxDD -4.9%. At 2x cost: net +1.71.
+VERDICT: FAIL. It clears the gross ≥ 2× cost bar, net > 0 at 2x and the years-positive bar, but FAILS on t (1.60 vs 2.0, MDE 1.12) and on frequency (2.93 vs 4 trades/week). Holdout NOT opened. This is the strongest near-miss in the program and is flagged for blind replication only.

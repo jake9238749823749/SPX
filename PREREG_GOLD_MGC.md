@@ -6,3 +6,5 @@ DEV 2021-10..2024-12 (~3.2 yr): pass = gross >= 1.4 bp/trade AND net t >= 2 AND 
 HOLDOUT 2025-01..2026-10 (~1.8 yr), run once: MDE Sharpe ~ 1.49; pass = net > 0 at 1x and 2x, same sign as DEV.
 Nulls: sign-flip on gross (gross edge exists); recentered block bootstrap (net edge).
 Kill: all three gross < 1.4 bp in DEV -> close intraday program; no 24th rule.
+
+Amendment 2026-10-15 (before data): adopt HANDOFF.md section 4 bar exactly. DEV also needs >= 60% of years positive. HOLDOUT pass = net > 0 with one-sided p < 0.10. Where the two documents differ, HANDOFF.md governs; it was logged first.

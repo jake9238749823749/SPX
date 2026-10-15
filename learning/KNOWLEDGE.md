@@ -16,6 +16,8 @@ Each entry: claim · level · source or test · date. Demote an entry if new evi
 - P: Holdout data is spent after one use. A "post-hoc exception" must be logged before running.
 - B: A 120-day forecast verdict is underpowered for small Brier skill; roughly 400 days are needed. Source: system/ANALYSIS_2026-10-15.md (approximate, not computed).
 
+- S: "Forecast-to-Fill" gold trend (arXiv 2511.08571) headline Sharpe 2.88 is self-reported and unreplicable from the text; its 2x-cost row is −1.00, frequency is 2.3/wk, and capacity arithmetic doesn't reconcile. Source: audits/002-forecast-to-fill.md.
+
 ## AI and research
 - P: AI made research fast in this repo: 34 tests and 20 lanes in one day.
 - S: LLM trading results post-cutoff are mostly within noise of buy-and-hold (StockBench, Alpha Arena secondhand). Source: learning session 2026-10-15.

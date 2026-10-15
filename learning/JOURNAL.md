@@ -22,3 +22,8 @@
 - Power table added to FAMILY.md. N=1,000 on 8 years gives minimum detectable Sharpe ≈ 1.4.
 - Next: a paper gate (instrument, frequency, FTMO legality, exact parameters, 2x cost) and a harvest batch of ≤20 agents, then lock code hashes, then open GBPUSD 2018-07+ once.
 - 2026-10-15: F1 paper gate: 0/7 pass; no window opened; goal not met. Needs new candidates with exact rules, >=4/wk, and 2023+ gross evidence.
+
+## 2026-10-15 (Audit 002: Forecast-to-Fill, arXiv 2511.08571)
+- Found and extracted the paper (three independent extractions, reconciled). Verdict: UNAUDITABLE as written; fails frequency (2.3/wk), the paper's own 2x-cost row (Sharpe −1.00), and the net-vs-gross headline question.
+- Learned: a headline Sharpe can be a cost-free or T+0 figure. Read the cost table, not the abstract.
+- Next question: none from this paper until its parameters are published; no pre-registration justified.

@@ -322,3 +322,6 @@ Criteria fixed now:
 - Holdout pass: net > 0 at MES cost with one-sided p < 0.10 (t > 1.29), AND net > 0 at CFD cost.
 - Even on a pass, ORB stays below the program's bar, because it failed DEV. A pass makes it a live-forward candidate only; it is not a validated edge.
 - Holdout fail: ORB is dead.
+RESULT ORB HOLDOUT 2025-01..2026-09 (169 trade days, 2.75 trades/week):
+gross -1.56 bp/trade. CFD: net -2.35, t -1.03. MES: net -2.26, t -0.99, Sharpe -0.73, maxDD -8.4%, 0/2 years positive.
+VERDICT: FAIL. Gross turned negative out of sample, matching the external Krueger replication. ORB is DEAD. Program total: 34 tests, 0 survivors.

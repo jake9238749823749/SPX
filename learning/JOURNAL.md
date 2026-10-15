@@ -10,3 +10,9 @@
 - Gate: $1M in one year needs 100% on $1M, 10% on $10M, 2000% on $50k. The plausible edge here is 0-10%/yr. Millions in one year is infeasible from the capital this repo assumes; no measured edge supports it.
 - Built learning/LOOP.md: feasibility gate, eight-step cycle, stop conditions.
 - Next question: the calibration loop Jake has not yet approved, or the CME fee page (needed to close the microstructure paper answer).
+
+## 2026-10-15 (family goal: lock hypotheses before data, correct for N)
+- Built learning/family: register.py (refuses spec without forward_start after lock date), correct.py (Bonferroni and expected-max Sharpe), score_forward.py (forward-only).
+- Locked 7 specs. 3 are spent on known data and cannot pass. 4 are open for forward scoring.
+- Learned: "thousands of candidates, each scored once" is not possible on data already seen. Every verdict needs forward data, which lags by months.
+- Next question: a source for new hypotheses that doesn't hit search rate limits.

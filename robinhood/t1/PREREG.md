@@ -22,3 +22,15 @@ datasets/s-and-p-500 on GitHub (Shiller monthly data), fetched 2026-10-16.
 Timing beats buy-and-hold if BOTH: (a) its Sharpe ratio is higher, with a 12-month block-bootstrap one-sided p < 0.10; and (b) its total return is no more than 1%/yr below buy-and-hold.
 Otherwise FAIL, and buy-and-hold remains the benchmark to beat.
 Reported either way: CAGR, volatility, Sharpe, max drawdown, months invested, exits, for both bounds.
+
+## RESULT (run once, 2026-10-16)
+TEST 2007-01..2026-09:
+| | CAGR | Vol | Sharpe | Max DD |
+|---|---|---|---|---|
+| Buy-and-hold (total return) | 11.01% | 13.0% | 0.87 (cash=0) / 0.65 (cash=10y) | −48.9% |
+| Timing, cash=0 | 9.61% | 9.7% | 1.00 | −18.9% |
+| Timing, cash=10y rate | 10.32% | 9.7% | 0.78 | −18.9% |
+Invested 77.6% of months; 9 exits in ~20 years. Sharpe difference bootstrap p = 0.38 (cash=0), 0.38 (cash=10y).
+VERDICT: FAIL. (a) Sharpe gain not significant (p 0.38 vs 0.10 needed); (b) CAGR 1.4%/yr below buy-and-hold at the lower cash bound.
+What it did do: cut the worst drawdown from −49% to −19% for a cost of about 0.7-1.4%/yr in return. That is risk reduction, not an edge.
+Reference 1901-2006 (Faber's era, not a test): Sharpe gain p ≈ 0.03-0.05, 69 exits. The effect was stronger before publication.

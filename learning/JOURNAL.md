@@ -33,3 +33,8 @@
 ## 2026-10-16 (goal change)
 - Goal changed from FTMO to growing a Robinhood account (GOAL.md). The 4/week floor and the 16:10 flat rule no longer apply; costs drop to spread plus taxes.
 - Next question: does any long-horizon rule beat buy-and-hold of a broad index ETF after taxes and spread?
+
+## 2026-10-16 (Robinhood T1)
+- 10-month SMA timing vs buy-and-hold, S&P total return, 2007-2026 out of sample: FAIL (Sharpe gain p 0.38; CAGR −0.7 to −1.4%/yr). Drawdown cut from −49% to −19%.
+- Learned: on Robinhood, the benchmark (index buy-and-hold) is hard to beat; timing buys drawdown protection, not return.
+- Next question: is drawdown protection worth 1%/yr to Jake? That's a preference, not an edge.

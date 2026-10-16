@@ -10,6 +10,8 @@ Each entry: claim · level · source or test · date. Demote an entry if new evi
 - S: Overnight gold and S&P returns are concentrated in pre-2018 samples and shrink after spreads. Source: sprawl lane 15.
 - B: Discretionary skill exists in fewer than 1-3% of retail traders. Source: Barber-Odean-style studies cited by sprawl lanes; not re-verified.
 
+- B: On Robinhood, holding costs are near zero and there is no daily flat rule, so long-horizon risk premia become viable where they were blocked under FTMO. Untested here. Source: GOAL.md.
+
 ## Method
 - P: Gross-to-cost ratio determines viability. (The gold DEV used a flat MGC cost of 0.65 bp; at 2021-22 gold prices of about $1,900 the real MGC round trip was about 1.5 bp. The gold verdict still holds because gross was negative. Source: sprawl lane 14, edge/SEARCH_LOG.md.) Per-trade move divided by round-trip cost is the first filter.
 - P: Pre-registration plus holdout caught two false positives: U-NA (noise-area, US500) and ORB both passed DEV and failed holdout. Source: edge/SEARCH_LOG.md, audits/001-orb-us500.md. This is the evidence the protocol is worth keeping.

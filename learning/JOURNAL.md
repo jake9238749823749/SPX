@@ -29,3 +29,7 @@
 - Next question: none from this paper until its parameters are published; no pre-registration justified.
 - 2026-10-15: Audit 002 final: 4 lenses FATAL (arith, leak, cost, replic), 2 CONCERN (freq, data). 9/11 findings survived refutation. Verdict UNAUDITABLE, fails as written.
 - 2026-10-15: Audit 002 workflow stopped at user request; synthesis and two refuters not completed. Verdict stands on completed results.
+
+## 2026-10-16 (goal change)
+- Goal changed from FTMO to growing a Robinhood account (GOAL.md). The 4/week floor and the 16:10 flat rule no longer apply; costs drop to spread plus taxes.
+- Next question: does any long-horizon rule beat buy-and-hold of a broad index ETF after taxes and spread?

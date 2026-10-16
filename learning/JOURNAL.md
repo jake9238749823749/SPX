@@ -38,3 +38,10 @@
 - 10-month SMA timing vs buy-and-hold, S&P total return, 2007-2026 out of sample: FAIL (Sharpe gain p 0.38; CAGR −0.7 to −1.4%/yr). Drawdown cut from −49% to −19%.
 - Learned: on Robinhood, the benchmark (index buy-and-hold) is hard to beat; timing buys drawdown protection, not return.
 - Next question: is drawdown protection worth 1%/yr to Jake? That's a preference, not an edge.
+
+## 2026-10-16 (side project: news app plan)
+- Jake asked for a plan for a simpler, better clone of Interval News. Wrote newsapp/PLAN.md: an RSS pipeline, Claude summaries with a citation on every sentence, a published coverage and gap rule, a web app, and a per-edition approval gate. Nothing built.
+- Learned: Interval's coverage and visibility method isn't public. Its top user complaints are price, having to google the article, and trial cancellation.
+- Got wrong: nothing tested; the cost figures are estimates until Phase 1 logs real usage.
+- KNOWLEDGE.md unchanged: nothing learned about markets or method. This is off-goal (GOAL.md is the Robinhood account).
+- Next question: does Jake approve the five decisions at the end of PLAN.md, starting with the outlet list?
